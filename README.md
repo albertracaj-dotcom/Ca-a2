@@ -39,7 +39,7 @@ La ubicació només es demana quan l'usuari prem expressament el botó correspon
 
 El service worker desa la carcassa de l'aplicació, les dades de temporada i el banc d'exàmens per permetre obrir-los després de la primera càrrega amb connexió. Les dades personals romanen al dispositiu.
 
-El mapa base i les consultes meteorològiques necessiten Internet. Les imatges de mapa no es descarreguen per a ús offline en aquesta versió. El registre GPS requereix que la pantalla de mapa romangui oberta; no es garanteix el seguiment en segon pla.
+El mapa base i les consultes meteorològiques necessiten Internet. Les imatges de mapa no es descarreguen per a ús offline en aquesta versió. El registre GPS requereix mantenir l'aplicació oberta; en sortir del mapa, el track s'atura i es desa automàticament. No es garanteix el seguiment en segon pla.
 
 ## Fonts i advertiments
 
