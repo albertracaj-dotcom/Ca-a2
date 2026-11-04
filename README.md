@@ -6,7 +6,7 @@ Aplicació web progressiva (PWA) en català per organitzar l'activitat cinegèti
 
 - **Inici:** resum de jornades, observacions i equipament.
 - **Mapa:** mapa base OpenStreetMap, localització GPS sota demanda, punts personals guardats, enregistrament de tracks i exportació GPX.
-- **Temporada:** enllaços directes a normativa, espècies, llicències i permisos oficials de la Generalitat de Catalunya per a la temporada 2026–2027.
+- **Temporada:** cercador per espècie amb una base inicial de 19 espècies i períodes 2026–2027, més enllaços a normativa, espècies, llicències i permisos oficials de la Generalitat. Les restriccions locals i dies puntuals s'han de verificar.
 - **Diari de caça:** registre de jornades, modalitat, zona, espècies i notes.
 - **Fauna:** registre d'observacions, ubicació i nombre d'exemplars.
 - **Meteorologia:** consulta de condicions actuals i previsió de tres dies per població mitjançant Open-Meteo.
@@ -37,7 +37,7 @@ La ubicació només es demana quan l'usuari prem expressament el botó correspon
 
 ## Funcionament sense connexió
 
-El service worker desa la carcassa de l'aplicació i el banc d'exàmens per permetre obrir-los després de la primera càrrega amb connexió. Les dades personals romanen al dispositiu.
+El service worker desa la carcassa de l'aplicació, les dades de temporada i el banc d'exàmens per permetre obrir-los després de la primera càrrega amb connexió. Les dades personals romanen al dispositiu.
 
 El mapa base i les consultes meteorològiques necessiten Internet. Les imatges de mapa no es descarreguen per a ús offline en aquesta versió. El registre GPS requereix que la pantalla de mapa romangui oberta; no es garanteix el seguiment en segon pla.
 
