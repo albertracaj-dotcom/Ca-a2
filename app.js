@@ -5,7 +5,7 @@ const store={get(k){try{return JSON.parse(localStorage.getItem('caca2_'+k)||'[]'
 function toast(t){const el=$('#toast');if(!el)return;el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300)}
 function stats(){$('#statDays').textContent=store.get('days').length;$('#statObservations').textContent=store.get('sightings').length;$('#statGear').textContent=store.get('gear').length}
 function list(key,id,fields){const el=$('#'+id),items=store.get(key);if(!el)return;el.innerHTML=items.length?items.slice().reverse().map(x=>'<div class="record"><div><b>'+esc(fields(x)[0])+'</b><small>'+esc(fields(x)[1]||'')+(fields(x)[2]?' · '+esc(fields(x)[2]):'')+'</small></div><span class="tag">Desat</span></div>').join(''):'<p class="empty">Encara no hi ha registres.</p>'}
-function home(){if(stopActiveTrack){stopActiveTrack();stopActiveTrack=null} $('#app').hidden=false;$('#page').hidden=true;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.hasAttribute('data-home')));window.scrollTo(0,0)}
+function home(){if(stopActiveTrack){stopActiveTrack();stopActiveTrack=null} $('#app').hidden=false;$('#page').hidden=true;$('#page').className='page-shell';document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.hasAttribute('data-home')));window.scrollTo(0,0)}
 function pageHead(title,sub){return '<div class="page-head"><button class="back-btn" data-home aria-label="Torna a l’inici">‹</button><div><h1>'+title+'</h1><p>'+sub+'</p></div></div>'}
 function renderPage(id){
  if(stopActiveTrack){stopActiveTrack();stopActiveTrack=null}
@@ -17,10 +17,10 @@ function renderPage(id){
  else if(id==='temporada'){title='Temporada 2026–2027';sub='Períodes i restriccions per espècie';body='<div id="seasonModule"></div>';after=renderSeason}
  else if(id==='meteo'){title='Meteorologia';sub='Previsió per a la zona que triïs';body='<div class="panel"><h3>Consulta la previsió</h3><p class="muted-text">Introdueix una població. La consulta utilitza Open-Meteo i no necessita registre ni clau API.</p><form id="weatherForm"><div class="field"><label>Població</label><input name="place" required placeholder="Ex. Cervelló, Berga, Vielha..."></div><button class="primary">Consulta la previsió</button></form><div id="weatherResult"></div></div><div class="notice"><span>!</span><p><b>Planifica amb prudència</b><br>La previsió no substitueix els avisos oficials ni l’avaluació del risc d’incendi. Consulta també Meteocat i Protecció Civil.</p></div>';after=initWeather}
  else if(id==='seguretat'){title='Seguretat';sub='Actua amb responsabilitat';body='<div class="panel danger"><h3>Emergència</h3><p class="muted-text">En cas d’emergència, truca al 112. La trucada necessita cobertura de xarxa mòbil o una altra via disponible.</p><div class="button-row"><a class="primary" href="tel:112" style="text-decoration:none">Truca al 112</a><button id="sosLoc" class="secondary">Mostra la meva ubicació</button></div><p id="sosResult" class="muted-text"></p></div><div class="panel"><h3>Recordatoris bàsics</h3><p class="muted-text">Identifica sempre la teva posició i la dels companys. Respecta les zones de seguretat, senyalitza adequadament l’activitat i no disparis mai sense identificar clarament l’objectiu i el que hi ha al darrere.</p></div>';after=initSafety}
- else if(id==='configuracio'){title='Configuració';sub='Les teves dades són al dispositiu';body='<div class="panel"><h3>Còpia de seguretat</h3><p class="muted-text">Exporta les dades per guardar-les o transferir-les a un altre dispositiu. La còpia inclou jornades, observacions, equipament, punts i progrés dels exàmens.</p><div class="button-row"><button id="exportBtn" class="primary">Exporta les meves dades</button><label class="secondary" for="importFile">Importa una còpia</label><input id="importFile" type="file" accept="application/json" hidden></div></div><div class="panel"><h3>Privacitat i emmagatzematge</h3><p class="muted-text">Les dades es desen localment en aquest navegador i no s’envien a cap servidor. Si esborres les dades del navegador, pots perdre-les: fes còpies de seguretat periòdiques.</p><button id="clearBtn" class="secondary">Esborra totes les dades locals</button></div><div class="panel"><h3>Sobre Caça2</h3><p class="muted-text">Versió 0.5 · Caça2.</p></div>';after=initSettings}
+ else if(id==='configuracio'){title='Configuració';sub='Les teves dades són al dispositiu';body='<div class="panel"><h3>Còpia de seguretat</h3><p class="muted-text">Exporta les dades per guardar-les o transferir-les a un altre dispositiu. La còpia inclou jornades, observacions, equipament, punts i progrés dels exàmens.</p><div class="button-row"><button id="exportBtn" class="primary">Exporta les meves dades</button><label class="secondary" for="importFile">Importa una còpia</label><input id="importFile" type="file" accept="application/json" hidden></div></div><div class="panel"><h3>Privacitat i emmagatzematge</h3><p class="muted-text">Les dades es desen localment en aquest navegador i no s’envien a cap servidor. Si esborres les dades del navegador, pots perdre-les: fes còpies de seguretat periòdiques.</p><button id="clearBtn" class="secondary">Esborra totes les dades locals</button></div><div class="panel"><h3>Sobre Caça2</h3><p class="muted-text">Versió 1.0 · Nova experiència Caça2.</p></div>';after=initSettings}
  else if(id==='examen'){title='Exàmens';sub='Preparació per a les llicències D i E';body='<div id="examModule"></div>';after=()=>{if(window.Caca2Exams)window.Caca2Exams.mount()}}
  else return;
- $('#app').hidden=true;$('#page').hidden=false;$('#page').innerHTML=pageHead(title,sub)+body;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0);if(after)after()
+ $('#app').hidden=true;$('#page').hidden=false;$('#page').className='page-shell page-'+id;$('#page').innerHTML=pageHead(title,sub)+body;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0);if(after)after()
 }
 function loadLeaflet(){return new Promise((resolve,reject)=>{if(window.L){resolve();return}if(!$('#leaflet-css')){const l=document.createElement('link');l.id='leaflet-css';l.rel='stylesheet';l.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(l)}const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}
 function distanceMeters(a,b){const R=6371000,toRad=x=>x*Math.PI/180,dLat=toRad(b.lat-a.lat),dLon=toRad(b.lon-a.lon),x=Math.sin(dLat/2)**2+Math.cos(toRad(a.lat))*Math.cos(toRad(b.lat))*Math.sin(dLon/2)**2;return 2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
@@ -42,26 +42,15 @@ function initSettings(){$('#exportBtn').onclick=()=>{const data={version:2,expor
 document.addEventListener('click',e=>{const p=e.target.closest('[data-page]'),h=e.target.closest('[data-home]');if(p)renderPage(p.dataset.page);if(h)home()});
 document.addEventListener('submit',e=>{const id=e.target.id,map={dayForm:'days',sightForm:'sightings',gearForm:'gear'};if(!map[id])return;e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),key=map[id],a=store.get(key);a.push({...d,createdAt:new Date().toISOString()});store.set(key,a);stats();toast('Registre desat.');renderPage(id==='dayForm'?'diari':id==='sightForm'?'fauna':'equipament')});
 let installPrompt;
-const installPanel=$('#installPrompt'),installMessage=$('#installMessage'),installNow=$('#installNow');
-const installed=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-const dismissedRecently=()=>{try{return Date.now()-Number(localStorage.getItem('caca2_install_dismissed')||0)<7*24*60*60*1000}catch{return false}};
-function showInstallPrompt(){
- if(installed()||dismissedRecently()||!installPanel)return;
- installPanel.hidden=false;
- if(installPrompt){installMessage.textContent='Instal·la Caça2 a la pantalla d’inici per tenir-la sempre a mà.';installNow.textContent='Instal·la'}
- else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){installMessage.textContent='Per instal·lar-la: prem Comparteix i després “Afegir a la pantalla d’inici”.';installNow.textContent='Com fer-ho'}
- else{installMessage.textContent='Afegeix Caça2 a la pantalla d’inici des del menú del navegador per obrir-la com una aplicació.';installNow.textContent='Com fer-ho'}
-}
-function hideInstallPrompt(){if(installPanel)installPanel.hidden=true}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#installBtn').hidden=false;if(!installed())showInstallPrompt()});
-async function launchInstall(){
- if(installPrompt){installPrompt.prompt();const choice=await installPrompt.userChoice;installPrompt=null;$('#installBtn').hidden=true;if(choice&&choice.outcome==='accepted'){hideInstallPrompt();return}return}
- if(/iphone|ipad|ipod/i.test(navigator.userAgent)){toast('Prem Comparteix al navegador i selecciona “Afegir a la pantalla d’inici”.')}
- else{toast('Obre el menú ⋮ del navegador i selecciona “Instal·la l’aplicació” o “Afegeix a la pantalla d’inici”.')}
-}
-installNow.addEventListener('click',launchInstall);
-$('#installBtn').addEventListener('click',launchInstall);
-$('#installLater').addEventListener('click',()=>{try{localStorage.setItem('caca2_install_dismissed',String(Date.now()))}catch{}hideInstallPrompt()});
-window.addEventListener('appinstalled',()=>{hideInstallPrompt();$('#installBtn').hidden=true;installPrompt=null;toast('Caça2 s’ha instal·lat correctament!')});
-if(!installed())window.setTimeout(showInstallPrompt,1200);
+const installBtn=$('#installBtn');
+const isInstalled=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+function updateInstallButton(){if(installBtn)installBtn.hidden=isInstalled()||!installPrompt}
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;updateInstallButton()});
+installBtn.addEventListener('click',async()=>{
+ if(!installPrompt)return;
+ installPrompt.prompt();
+ const result=await installPrompt.userChoice;
+ if(result&&result.outcome==='accepted'){installPrompt=null;installBtn.hidden=true}
+});
+window.addEventListener('appinstalled',()=>{installPrompt=null;installBtn.hidden=true;toast('Caça2 instal·lada')});
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));stats();
