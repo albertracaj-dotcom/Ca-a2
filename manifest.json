@@ -1,14 +1,14 @@
 {
-  "name": "Caça2 · Territori i temporada",
+  "name": "Caça2 · Territori i natura",
   "short_name": "Caça2",
-  "description": "El teu espai per preparar sortides, consultar la temporada i registrar la teva activitat cinegètica.",
+  "description": "Territori, fauna, temporada i activitat cinegètica.",
   "lang": "ca",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f3f0e7",
-  "theme_color": "#102d25",
+  "background_color": "#f1efe8",
+  "theme_color": "#17251d",
   "icons": [
     {
       "src": "icon.svg",
