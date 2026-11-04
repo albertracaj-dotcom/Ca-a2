@@ -41,5 +41,27 @@ function download(data,name){const a=document.createElement('a'),url=URL.createO
 function initSettings(){$('#exportBtn').onclick=()=>{const data={version:2,exportedAt:new Date().toISOString(),days:store.get('days'),sightings:store.get('sightings'),gear:store.get('gear'),mapPoints:store.get('mapPoints'),mapTracks:store.get('mapTracks'),examHistory:JSON.parse(localStorage.getItem('caca2_exam_history_v1')||'[]'),examMastery:JSON.parse(localStorage.getItem('caca2_exam_master_v1')||'[]')};download(JSON.stringify(data,null,2),'caca2-copia-'+new Date().toISOString().slice(0,10)+'.json')};$('#importFile').onchange=async e=>{try{const d=JSON.parse(await e.target.files[0].text());for(const k of ['days','sightings','gear','mapPoints','mapTracks'])if(Array.isArray(d[k]))store.set(k,d[k]);if(Array.isArray(d.examHistory))localStorage.setItem('caca2_exam_history_v1',JSON.stringify(d.examHistory));if(Array.isArray(d.examMastery))localStorage.setItem('caca2_exam_master_v1',JSON.stringify(d.examMastery));stats();toast('Còpia importada correctament.');renderPage('configuracio')}catch{toast('El fitxer no és una còpia vàlida de Caça2.')}};$('#clearBtn').onclick=()=>{if(confirm('Vols esborrar definitivament totes les dades locals de Caça2?')){['days','sightings','gear','mapPoints'].forEach(k=>store.set(k,[]));localStorage.removeItem('caca2_exam_history_v1');localStorage.removeItem('caca2_exam_master_v1');stats();toast('Dades locals esborrades.');renderPage('configuracio')}}}
 document.addEventListener('click',e=>{const p=e.target.closest('[data-page]'),h=e.target.closest('[data-home]');if(p)renderPage(p.dataset.page);if(h)home()});
 document.addEventListener('submit',e=>{const id=e.target.id,map={dayForm:'days',sightForm:'sightings',gearForm:'gear'};if(!map[id])return;e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),key=map[id],a=store.get(key);a.push({...d,createdAt:new Date().toISOString()});store.set(key,a);stats();toast('Registre desat.');renderPage(id==='dayForm'?'diari':id==='sightForm'?'fauna':'equipament')});
-let installPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#installBtn').hidden=false});$('#installBtn').addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('#installBtn').hidden=true});
+let installPrompt;
+const installPanel=$('#installPrompt'),installMessage=$('#installMessage'),installNow=$('#installNow');
+const installed=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+const dismissedRecently=()=>{try{return Date.now()-Number(localStorage.getItem('caca2_install_dismissed')||0)<7*24*60*60*1000}catch{return false}};
+function showInstallPrompt(){
+ if(installed()||dismissedRecently()||!installPanel)return;
+ installPanel.hidden=false;
+ if(installPrompt){installMessage.textContent='Instal·la Caça2 a la pantalla d’inici per tenir-la sempre a mà.';installNow.textContent='Instal·la'}
+ else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){installMessage.textContent='Per instal·lar-la: prem Comparteix i després “Afegir a la pantalla d’inici”.';installNow.textContent='Com fer-ho'}
+ else{installMessage.textContent='Afegeix Caça2 a la pantalla d’inici des del menú del navegador per obrir-la com una aplicació.';installNow.textContent='Com fer-ho'}
+}
+function hideInstallPrompt(){if(installPanel)installPanel.hidden=true}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#installBtn').hidden=false;if(!installed())showInstallPrompt()});
+async function launchInstall(){
+ if(installPrompt){installPrompt.prompt();const choice=await installPrompt.userChoice;installPrompt=null;$('#installBtn').hidden=true;if(choice&&choice.outcome==='accepted'){hideInstallPrompt();return}return}
+ if(/iphone|ipad|ipod/i.test(navigator.userAgent)){toast('Prem Comparteix al navegador i selecciona “Afegir a la pantalla d’inici”.')}
+ else{toast('Obre el menú ⋮ del navegador i selecciona “Instal·la l’aplicació” o “Afegeix a la pantalla d’inici”.')}
+}
+installNow.addEventListener('click',launchInstall);
+$('#installBtn').addEventListener('click',launchInstall);
+$('#installLater').addEventListener('click',()=>{try{localStorage.setItem('caca2_install_dismissed',String(Date.now()))}catch{}hideInstallPrompt()});
+window.addEventListener('appinstalled',()=>{hideInstallPrompt();$('#installBtn').hidden=true;installPrompt=null;toast('Caça2 s’ha instal·lat correctament!')});
+if(!installed())window.setTimeout(showInstallPrompt,1200);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));stats();
