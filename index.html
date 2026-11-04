@@ -11,8 +11,9 @@
 <main id="app" class="app-shell">
 <section class="hero"><div><p class="eyebrow">LA TEVA TEMPORADA, SOTA CONTROL</p><h1>Bon dia,<br><em>caçador.</em></h1><p class="muted">Tot el que necessites al teu abast.</p></div><div class="hero-mark" aria-hidden="true">C2</div></section>
 <section class="quick-stats" aria-label="Resum"><article><span class="stat-icon">◷</span><strong id="statDays">0</strong><small>Jornades</small></article><article><span class="stat-icon">⌖</span><strong id="statObservations">0</strong><small>Observacions</small></article><article><span class="stat-icon">▣</span><strong id="statGear">0</strong><small>Equipament</small></article></section>
-<section class="section-heading"><div><p class="eyebrow">ESPAI PERSONAL</p><h2>Explora Caça2</h2></div><span class="version">VERSIÓ 0.1</span></section>
+<section class="section-heading"><div><p class="eyebrow">ESPAI PERSONAL</p><h2>Explora Caça2</h2></div><span class="version">VERSIÓ 0.2</span></section>
 <nav class="feature-grid" aria-label="Apartats principals">
+<button class="feature-card" data-page="examen"><span class="feature-symbol">✎</span><span><b>Exàmens</b><small>Llicències D i E</small></span><span class="arrow">↗</span></button>
 <button class="feature-card feature-map" data-page="mapa"><span class="feature-symbol">⌖</span><span><b>Mapa</b><small>Ubicació i punts</small></span><span class="arrow">↗</span></button>
 <button class="feature-card" data-page="temporada"><span class="feature-symbol">▦</span><span><b>Temporada</b><small>Espècies i períodes</small></span><span class="arrow">↗</span></button>
 <button class="feature-card" data-page="diari"><span class="feature-symbol">▤</span><span><b>Diari de caça</b><small>Jornades i captures</small></span><span class="arrow">↗</span></button>
@@ -25,7 +26,8 @@
 <section class="notice"><span>!</span><p><b>Informació important</b><br>Consulta sempre la normativa i les fonts oficials abans de sortir. Caça2 no substitueix permisos ni autoritzacions.</p></section>
 </main>
 <section id="page" class="page-shell" hidden></section>
-<nav class="bottom-nav" aria-label="Navegació"><button class="nav-item active" data-home><span>⌂</span><small>Inici</small></button><button class="nav-item" data-page="mapa"><span>⌖</span><small>Mapa</small></button><button class="nav-item" data-page="diari"><span>▤</span><small>Diari</small></button><button class="nav-item" data-page="temporada"><span>▦</span><small>Temporada</small></button><button class="nav-item" data-page="configuracio"><span>☰</span><small>Més</small></button></nav>
+<nav class="bottom-nav" aria-label="Navegació"><button class="nav-item active" data-home><span>⌂</span><small>Inici</small></button><button class="nav-item" data-page="examen"><span>✎</span><small>Exàmens</small></button><button class="nav-item" data-page="mapa"><span>⌖</span><small>Mapa</small></button><button class="nav-item" data-page="diari"><span>▤</span><small>Diari</small></button><button class="nav-item" data-page="temporada"><span>▦</span><small>Temporada</small></button><button class="nav-item" data-page="configuracio"><span>☰</span><small>Més</small></button></nav>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="exams.js" defer></script>
 <script src="app.js" defer></script>
 </body></html>
