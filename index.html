@@ -2,26 +2,30 @@
 <html lang="ca">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#142b20"><meta name="description" content="Caça2: la teva activitat cinegètica, en una sola aplicació.">
+<meta name="theme-color" content="#087f78"><meta name="description" content="Caça2: la teva activitat cinegètica, en una sola aplicació.">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css"><title>Caça2</title>
 </head>
 <body>
 <header class="topbar"><a class="brand" href="#" aria-label="Caça2 inici"><span class="brand-mark">C2</span><span>Caça<span class="brand-accent">2</span><small>ACTIVITAT CINEGÈTICA</small></span></a><button id="installBtn" class="icon-btn" hidden aria-label="Instal·la l'aplicació">⇩</button></header>
 <main id="app" class="app-shell">
-<section class="hero"><div><p class="eyebrow">LA TEVA TEMPORADA, SOTA CONTROL</p><h1>Bon dia,<br><em>caçador.</em></h1><p class="muted">Tot el que necessites al teu abast.</p></div><div class="hero-mark" aria-hidden="true">C2</div></section>
-<section class="quick-stats" aria-label="Resum"><article><span class="stat-icon">◷</span><strong id="statDays">0</strong><small>Jornades</small></article><article><span class="stat-icon">⌖</span><strong id="statObservations">0</strong><small>Observacions</small></article><article><span class="stat-icon">▣</span><strong id="statGear">0</strong><small>Equipament</small></article></section>
-<section class="section-heading"><div><p class="eyebrow">ESPAI PERSONAL</p><h2>Explora Caça2</h2></div><span class="version">VERSIÓ 0.3</span></section>
+<section class="hero">
+  <div class="hero-orbit hero-orbit-one"></div><div class="hero-orbit hero-orbit-two"></div>
+  <div class="hero-content"><p class="eyebrow">EL TEU CAMPAMENT DIGITAL</p><h1>La natura<br><em>és casa teva.</em></h1><p class="muted">Planifica, explora i registra cada sortida.</p><button class="hero-cta" data-page="mapa">Explora el mapa <span>↗</span></button></div>
+  <div class="hero-art" aria-hidden="true"><div class="hero-sun"></div><div class="hero-mountain mountain-back"></div><div class="hero-mountain mountain-front"></div><div class="hero-tree">♣</div><span class="hero-coordinates">41°23' N · 02°10' E</span></div>
+</section>
+<section class="quick-stats" aria-label="Resum"><article class="stat-days"><span class="stat-icon">◷</span><strong id="statDays">0</strong><small>Jornades</small><i>Les teves sortides</i></article><article class="stat-observations"><span class="stat-icon">⌖</span><strong id="statObservations">0</strong><small>Observacions</small><i>Vida salvatge</i></article><article class="stat-gear"><span class="stat-icon">▣</span><strong id="statGear">0</strong><small>Equipament</small><i>Tot a punt</i></article></section>
+<section class="section-heading"><div><p class="eyebrow">EL TEU ESPAI PERSONAL</p><h2>Què fem avui?</h2></div><span class="version">CAÇA2 · 0.4</span></section>
 <nav class="feature-grid" aria-label="Apartats principals">
-<button class="feature-card" data-page="examen"><span class="feature-symbol">✎</span><span><b>Exàmens</b><small>Llicències D i E</small></span><span class="arrow">↗</span></button>
-<button class="feature-card feature-map" data-page="mapa"><span class="feature-symbol">⌖</span><span><b>Mapa</b><small>Ubicació i punts</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="temporada"><span class="feature-symbol">▦</span><span><b>Temporada</b><small>Espècies i períodes</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="diari"><span class="feature-symbol">▤</span><span><b>Diari de caça</b><small>Jornades i captures</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="fauna"><span class="feature-symbol">♧</span><span><b>Fauna</b><small>Observacions</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="meteo"><span class="feature-symbol">☼</span><span><b>Meteorologia</b><small>Temps i condicions</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="equipament"><span class="feature-symbol">▣</span><span><b>Equipament</b><small>Material i documents</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="seguretat"><span class="feature-symbol">✚</span><span><b>Seguretat</b><small>Emergències i ajuda</small></span><span class="arrow">↗</span></button>
-<button class="feature-card" data-page="configuracio"><span class="feature-symbol">⚙</span><span><b>Configuració</b><small>Dades i còpies</small></span><span class="arrow">↗</span></button>
+<button class="feature-card feature-exam" data-page="examen"><span class="feature-symbol">✎</span><span><b>Posa't a prova</b><small>Exàmens D i E</small></span><span class="arrow">↗</span><span class="card-kicker">APRÈN</span></button>
+<button class="feature-card feature-map" data-page="mapa"><span class="feature-symbol">⌖</span><span><b>Explora el territori</b><small>Mapa, GPS i tracks</small></span><span class="arrow">↗</span><span class="card-kicker">DESCOBREIX</span></button>
+<button class="feature-card feature-season" data-page="temporada"><span class="feature-symbol">▦</span><span><b>Temporada</b><small>Espècies i períodes</small></span><span class="arrow">↗</span><span class="card-kicker">CONSULTA</span></button>
+<button class="feature-card feature-diary" data-page="diari"><span class="feature-symbol">▤</span><span><b>El meu diari</b><small>Jornades i captures</small></span><span class="arrow">↗</span><span class="card-kicker">RECORDa</span></button>
+<button class="feature-card feature-fauna" data-page="fauna"><span class="feature-symbol">♧</span><span><b>Observa la fauna</b><small>Registra albiraments</small></span><span class="arrow">↗</span><span class="card-kicker">OBSERVA</span></button>
+<button class="feature-card feature-weather" data-page="meteo"><span class="feature-symbol">☼</span><span><b>El temps</b><small>Vent, pluja i previsió</small></span><span class="arrow">↗</span><span class="card-kicker">PREPARA'T</span></button>
+<button class="feature-card feature-gear" data-page="equipament"><span class="feature-symbol">▣</span><span><b>El meu equip</b><small>Material i documents</small></span><span class="arrow">↗</span><span class="card-kicker">ORGANITZA</span></button>
+<button class="feature-card feature-safety" data-page="seguretat"><span class="feature-symbol">✚</span><span><b>Seguretat</b><small>Emergències i ajuda</small></span><span class="arrow">↗</span><span class="card-kicker">PROTEGEIX-TE</span></button>
+<button class="feature-card feature-settings" data-page="configuracio"><span class="feature-symbol">⚙</span><span><b>Configuració</b><small>Dades i còpies</small></span><span class="arrow">↗</span><span class="card-kicker">PERSONALITZA</span></button>
 </nav>
 <section class="notice"><span>!</span><p><b>Informació important</b><br>Consulta sempre la normativa i les fonts oficials abans de sortir. Caça2 no substitueix permisos ni autoritzacions.</p></section>
 </main>
