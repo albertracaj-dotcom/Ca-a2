@@ -1,6 +1,6 @@
 # Caça2
 
-Versió 0.4 · Nova identitat visual amb dashboard acolorit i aplicació web progressiva (PWA) en català per organitzar l'activitat cinegètica i preparar els exàmens de llicències d'armes D i E.
+Versió 2.0 · Redisseny integral amb fotografia de natura, navegació unificada i experiència responsive.
 
 ## Mòduls disponibles
 
