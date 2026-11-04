@@ -1,14 +1,14 @@
 {
-  "name": "Caça2 · Territori i natura",
+  "name": "Caça2 · Eina de camp",
   "short_name": "Caça2",
-  "description": "Territori, fauna, temporada i activitat cinegètica.",
+  "description": "Eina personal per al territori i l'activitat cinegètica.",
   "lang": "ca",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f1efe8",
-  "theme_color": "#17251d",
+  "background_color": "#f3f5f6",
+  "theme_color": "#111b2a",
   "icons": [
     {
       "src": "icon.svg",
