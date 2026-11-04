@@ -47,10 +47,10 @@ document.addEventListener('submit',e=>{const id=e.target.id,map={dayForm:'days',
 let installPrompt;
 const installBtn=$('#installBtn');
 const isInstalled=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-function updateInstallButton(){if(installBtn)installBtn.hidden=isInstalled()||!installPrompt}
+function updateInstallButton(){if(installBtn)installBtn.hidden=isInstalled()}
 window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;updateInstallButton()});
 installBtn.addEventListener('click',async()=>{
- if(!installPrompt)return;
+ if(!installPrompt){toast('La instal·lació directa no està disponible en aquest navegador.');return}
  installPrompt.prompt();
  const result=await installPrompt.userChoice;
  if(result&&result.outcome==='accepted'){installPrompt=null;installBtn.hidden=true}
