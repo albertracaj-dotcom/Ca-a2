@@ -5,14 +5,14 @@ Aplicació web progressiva (PWA) en català per organitzar l'activitat cinegèti
 ## Mòduls disponibles
 
 - **Inici:** resum de jornades, observacions i equipament.
-- **Mapa:** mapa base OpenStreetMap, localització GPS sota demanda i punts personals guardats.
+- **Mapa:** mapa base OpenStreetMap, localització GPS sota demanda, punts personals guardats, enregistrament de tracks i exportació GPX.
 - **Temporada:** enllaços directes a normativa, espècies, llicències i permisos oficials de la Generalitat de Catalunya per a la temporada 2026–2027.
 - **Diari de caça:** registre de jornades, modalitat, zona, espècies i notes.
 - **Fauna:** registre d'observacions, ubicació i nombre d'exemplars.
 - **Meteorologia:** consulta de condicions actuals i previsió de tres dies per població mitjançant Open-Meteo.
 - **Equipament:** inventari de material, documentació i dates de revisió.
 - **Seguretat:** accés telefònic al 112 i visualització de la ubicació.
-- **Exàmens:** simulacres de 20 preguntes amb 20 minuts, llindar d'apte de 16/20, pràctica per temes, banc de preguntes i revisió d'errors.
+- **Exàmens:** simulacres de 423 preguntes en 7 temes, simulacres de 20 preguntes amb 20 minuts, llindar d'apte de 16/20, pràctica per temes, banc de preguntes i revisió d'errors.
 - **Configuració:** exportació i importació de còpies de seguretat.
 
 ## Publicació amb GitHub Pages
@@ -39,7 +39,7 @@ La ubicació només es demana quan l'usuari prem expressament el botó correspon
 
 El service worker desa la carcassa de l'aplicació i el banc d'exàmens per permetre obrir-los després de la primera càrrega amb connexió. Les dades personals romanen al dispositiu.
 
-El mapa base i les consultes meteorològiques necessiten Internet. Les imatges de mapa no es descarreguen per a ús offline en aquesta versió.
+El mapa base i les consultes meteorològiques necessiten Internet. Les imatges de mapa no es descarreguen per a ús offline en aquesta versió. El registre GPS requereix que la pantalla de mapa romangui oberta; no es garanteix el seguiment en segon pla.
 
 ## Fonts i advertiments
 
